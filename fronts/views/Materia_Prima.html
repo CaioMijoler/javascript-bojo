@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html ng-app="Controller">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gestão Smart</title>
+        <link rel="stylesheet" href="css/ordem.css"> 
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/menu.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/animate.min.css" rel="stylesheet">
+        <link href="css/prettyPhoto.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/responsive.css" rel="stylesheet">
+        <!-- Latest compiled and minified CSS -->
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-cookies.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-messages.min.js"></script>
+
+        <!-- Angular Material Library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+        
+        <script src="js/jquery.js"></script> 
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.prettyPhoto.js"></script>
+        <script src="js/jquery.isotope.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/wow.min.js"></script>
+        <script src="js/jquery.mask.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/locales/bootstrap-datepicker.pt-BR.js"></script>
+        <script src="js/cadastro_fisica.js"></script>
+        <script src="fronts/controller/controller.js"></script>
+    </head>
+
+<body ng-controller="Controller" class="container-fluid" ng-init="receber(); consultarCusto();">
+    <header id="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="row" align="center">
+                    <div class="col-sm-12">
+                        <div><p class="para">Olá, {{usuario}}</p></div></div>
+                    </div>
+                </div>
+            </div><!--/.container-->
+        </div><!--/.top-bar-->
+    </header>   
+ 	<form id="formulario" class="container userForm">
+ 		<div class="row">
+ 			<span id="btn-glyphicon" class="glyphicon glyphicon-list" ></span>
+ 		</div>
+        </div class="row">
+            <div class="form-inline">
+                <div class="form-group">                        
+                    <div class="container">
+                        <h2>Materia Prima</h2>
+                        <div class="table-responsive">          
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Materia Prima</th>
+                                    <th>Cor</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-show="custos.length > 0">
+                                        <td>Espuma</td>
+                                        <td>-</td>
+                                        <td>{{espuma.qtd_espuma}}</td>
+                                        <td>{{espuma.tot_custo_espuma}}</td>
+                                    </tr>
+                                    <tr ng-repeat="custo in custos">
+                                        <td>Tecido</td>
+                                        <td>{{custo.cor}}</td>
+                                        <td>{{custo.valor_tecido}}</td>
+                                        <td>{{custo.custo_tecido}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                                <label>Total Materia Prima: </label>
+                                    <input type="text" class="form-control" ng-model="total_mp" disabled>
+                        </div> 
+                        <div class="form-group col-md-4">
+                            <label>Verba de Marketing: </label>
+                                <input type="text" class="form-control" ng-model="verba_mp"  disabled>
+                        </div>   
+                        <div class="form-group col-md-4">
+                            <label>Custos de Mão-de-Obra: </label>
+                                <input type="text" class="form-control" ng-model="custo_mp" disabled>
+                        </div>    
+                        <div class="form-group col-md-4">
+                            <label>Total: </label>
+                                <input type="text" class="form-control" ng-model="custo_total" disabled>
+                        </div>  <div class="form-group col-md-4">
+                            <label>Custo por Produto: </label>
+                                <input type="text" class="form-control" ng-model="custo_produto" disabled>
+                        </div>  
+                    </div>   
+                </div>
+            </div>
+        </div>      
+     </form>
+    <section id="no-margin">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 wow fadeInDown">
+                    <div class="tab-wrap ">
+                        <div class="media">
+                            <div class="parrent">
+                                <ul class="nav nav-tabs nav-stacked">
+                                    <li>
+                                        <a href="/menu" class="agoravai analistic-01" id="control_Form">
+                                            <b>Menu</b>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="/logout">
+                                            <b>Sair
+                                                <span class="glyphicon glyphicon-log-out"></span>
+                                            </b>
+                                        </a>
+                                    </li>
+                                    <li data-toggle="collapse" data-target="#new2" class="collapsed">
+                                    <a href="">
+                                        <b>Home&nbsp;&emsp;
+                                            <span class="glyphicon glyphicon-home"></span>
+                                        </b>
+                                    </a>
+                                </li>
+                                <ul class="sub-menu collapse  nav nav-tabs nav-stacked" id="new2">
+                                    <li>
+                                        <a href="/tela">
+                                            <b>Sistema MRP
+                                                <i class="glyphicon glyphicon-globe">&#xe145;</i>
+                                            </b>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                                <li data-toggle="collapse" data-target="#new" class="collapsed">
+                                    <a href="">
+                                        <b>Custos &nbsp;Pedidos&emsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <span class="glyphicon glyphicon-floppy-disk "></span>
+                                        </b>
+                                    </a>
+                                </li>
+                                    <ul class="sub-menu collapse  nav nav-tabs nav-stacked" id="new">
+                                        <li>
+                                            <a href="/custo">
+                                                <b>Custos
+                                                    <i class="glyphicon glyphicon-usd"></i>
+                                                </b>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/pedido">
+                                                <b>Pedidos
+                                                    <i class="material-icons">&#xe869;</i>
+                                                </b>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <li data-toggle="collapse" data-target="#new5" class="collapsed">
+                                        <a href="">
+                                            <b>Novo e&nbsp;Materia Prima&emsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <span class="glyphicon glyphicon-floppy-disk "></span>
+                                            </b>
+                                        </a>
+                                    </li>
+                                    <ul class="sub-menu collapse  nav nav-tabs nav-stacked" id="new5">
+                                        <li>
+                                            <a href="/novo">
+                                                <b>Novo
+                                                    <i class="glyphicon glyphicon-plus"></i>
+                                                </b>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Materia_Prima">
+                                                <b>Materia_Prima
+                                                    <i class="glyphicon glyphicon-folder-close"></i>
+                                                </b>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                    <ul class="sub-menu collapse  nav nav-tabs nav-stacked" id="new3">
+                                        
+                                        
+                                    </ul>
+                                    <li class="menu-2">
+                                        <a class="menu-22"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--/.media-->
+                    </div>
+                    <!--/.tab-wrap-->
+                </div>
+                <!--/.col-sm-6-->
+            </div>
+            <!--/.row-->
+        </div>
+        <!--/.container-->
+    </section>
+
+  <footer id="footer" class="footer">
+        <div class="container">
+            <div class="row" align="center">
+                <div class="col-sm-12">
+                    <b>
+                        &copy; Copyright 2018 - MRP</b><i></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+		$("#btn-glyphicon").click(function(){
+			if ($("#formulario").attr("class") == "container"){	
+				$("#formulario").addClass("userForm");
+				$("#no-margin").show();
+			}
+			else{
+				$("#formulario").removeClass("userForm");
+				$("#no-margin").hide();
+			}
+		});
+	</script>
+</body>
+ 
+</html>
